@@ -1,0 +1,17 @@
+{
+    "name": "express-server",
+    "version": "0.0.1",
+    "description": "익스프레스 연습",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app"
+    },
+    "author": "Kim ChanHyun",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.17.3"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}
