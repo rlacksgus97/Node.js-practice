@@ -12,7 +12,18 @@ module.exports = () => {
 
     //desrializeUser : 매 요청 시 실행
     passport.deserializeUser((id, done) => {
-        User.findOne({ where: {id}})
+        User.findOne({
+            where: {id},
+            include: [{
+                model: User,
+                attributes: ['id', 'nick'],
+                as: 'Followers',
+            }, {
+                model: User,
+                attributes: ['id', 'nick'],
+                as: 'Followings',
+            }],
+        })
         //done()으로 req.user에 user 저장
         .then(user => done(null, user))
         .catch(err => done(err));

@@ -28,7 +28,7 @@ const upload = multer({
     limits: {fileSize: 5*1024*1024},
 });
 
-router.pose('/img', isLoggedIn, upload.single('img'), (req, res) => {
+router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
     console.log(req.file);
     res.json({url: `/img/${req.file.filename}`});
 });
@@ -59,4 +59,4 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
     }
 });
 
-module.expports = router;
+module.exports = router;
