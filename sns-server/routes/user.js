@@ -35,4 +35,20 @@ router.delete('/:id/unfollow', isLoggedIn, async (req, res, next) => {
     }
 });
 
+router.post('/update', isLoggedIn, async (req, res, next) => {
+    const {nickname} = req.body;
+    try {
+        const user = await User.findOne({ where: { id: req.user.id } });
+        if (user) {
+            await user.update({nick:nickname});
+            res.send('success');
+        } else {
+            res.status(404).send('no user');
+        }
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+});
+
 module.exports = router;
