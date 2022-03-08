@@ -89,4 +89,19 @@ router.delete('/:id/unlike', isLoggedIn, async (req, res, next) => {
     }
 });
 
+router.delete('/:id', isLoggedIn, async (req, res, next) => {
+    try {
+        const post = await Post.findOne({ where: { id: req.params.id } });
+        if (post.UserId === req.user.id) {
+            await Post.destroy({where: {id: post.id} });
+            res.send('success');
+        } else {
+            res.status(404).send('no authorization');
+        }
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+});
+
 module.exports = router;
