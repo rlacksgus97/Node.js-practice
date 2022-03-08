@@ -14,10 +14,7 @@ module.exports = () => {
 
     //desrializeUser : 매 요청 시 실행
     passport.deserializeUser(async (id, done) => {
-        console.log('hihi1');
-        console.log(cachedUser);
         if (!cachedUser) {
-            console.log('hihi2');
             const user = await User.findOne({
                 where: {id},
                 include: [{
@@ -36,7 +33,6 @@ module.exports = () => {
             cachedUser = user;
             done(null, user);
         } else {
-            console.log('hihi3');
             done(null, cachedUser);
         } 
     });
