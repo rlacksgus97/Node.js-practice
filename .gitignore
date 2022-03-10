@@ -1,4 +1,4 @@
 express-server/node_modules
 sns-server/node_modules
 sns-server/uploads
-bd-api-server/node_modules
+api-server/node_modules
